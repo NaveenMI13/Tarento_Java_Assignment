@@ -1,0 +1,634 @@
+{
+  "info": {
+    "_postman_id": "c15a1990-b0c6-43eb-b978-e2ad4cb04b5d",
+    "name": "Api Collections",
+    "description": "Select environment 8080. IDs default to 1 (seed data). Change productId/storeId/warehouseId/fulfilmentId in the env to target another row. Run GET all first to see ids.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "39309633"
+  },
+  "item": [
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "GET all products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/product",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET product by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/product/1",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "product",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST create product",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.collectionVariables.set('productName', 'PROD-' + Date.now());"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  var json = pm.response.json();",
+                  "  if (json.id) pm.collectionVariables.set('createdProductId', json.id);",
+                  "  if (json.id) pm.collectionVariables.set('productId', json.id);",
+                  "  if (json.name) pm.collectionVariables.set('productName', json.name);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{productName}}\",\n  \"description\": \"demo product\",\n  \"price\": 99.50,\n  \"stock\": 7\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/product",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT update product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{productName}}\",\n  \"description\": \"updated product\",\n  \"price\": 120.00,\n  \"stock\": 10\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/product/{{productId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "product",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/product/{{productId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "product",
+                "{{productId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Store",
+      "item": [
+        {
+          "name": "GET all stores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/store",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET store by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/store/1",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST create store",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.collectionVariables.set('storeName', 'STORE-' + Date.now());"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  var json = pm.response.json();",
+                  "  if (json.id) pm.collectionVariables.set('createdStoreId', json.id);",
+                  "  if (json.id) pm.collectionVariables.set('storeId', json.id);",
+                  "  if (json.name) pm.collectionVariables.set('storeName', json.name);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{storeName}}\",\n  \"quantityProductsInStock\": 4\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/store",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT update store",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{storeName}}\",\n  \"quantityProductsInStock\": 10\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/store/{{storeId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store",
+                "{{storeId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH store",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"{{storeName}}\",\n  \"quantityProductsInStock\": 12\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/store/{{storeId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store",
+                "{{storeId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE store",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/store/{{storeId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "store",
+                "{{storeId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Warehouse",
+      "item": [
+        {
+          "name": "GET all warehouses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/warehouse",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "warehouse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET warehouse by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/warehouse/1",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "warehouse",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST create warehouse",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.collectionVariables.set('businessUnitCode', 'MWH.' + Date.now().toString().slice(-6));"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  var json = pm.response.json();",
+                  "  if (json.id) {",
+                  "    pm.collectionVariables.set('createdWarehouseId', json.id);",
+                  "    pm.collectionVariables.set('warehouseId', json.id);",
+                  "  }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessUnitCode\": \"{{businessUnitCode}}\",\n  \"location\": \"HELMOND-001\",\n  \"capacity\": 40,\n  \"stock\": 5\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/warehouse",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "warehouse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST replace warehouse",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  var json = pm.response.json();",
+                  "  if (json.id) {",
+                  "    pm.collectionVariables.set('createdWarehouseId', json.id);",
+                  "    pm.collectionVariables.set('warehouseId', json.id);",
+                  "  }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessUnitCode\": \"{{businessUnitCode}}\",\n  \"location\": \"HELMOND-001\",\n  \"capacity\": 45,\n  \"stock\": 5\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/warehouse/{{businessUnitCode}}/replacement",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "warehouse",
+                "{{businessUnitCode}}",
+                "replacement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE archive warehouse",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/warehouse/{{warehouseId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "warehouse",
+                "{{warehouseId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Fulfilment",
+      "item": [
+        {
+          "name": "GET all fulfilments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/fulfilment",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "fulfilment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST create fulfilment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  var json = pm.response.json();",
+                  "  if (json.id) {",
+                  "    pm.collectionVariables.set('createdFulfilmentId', json.id);",
+                  "    pm.collectionVariables.set('fulfilmentId', json.id);",
+                  "  }",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"storeId\": 1,\n  \"warehouseId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{URL}}/fulfilment",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "fulfilment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE fulfilment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/fulfilment/{{fulfilmentId}}",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "fulfilment",
+                "{{fulfilmentId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "UI / Dev",
+      "item": [
+        {
+          "name": "GET index.html",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/index.html",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "index.html"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Quarkus Dev UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/q/dev",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "q",
+                "dev"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "createdProductId",
+      "value": ""
+    },
+    {
+      "key": "createdStoreId",
+      "value": ""
+    },
+    {
+      "key": "createdWarehouseId",
+      "value": ""
+    },
+    {
+      "key": "createdFulfilmentId",
+      "value": ""
+    },
+    {
+      "key": "businessUnitCode",
+      "value": ""
+    },
+    {
+      "key": "productName",
+      "value": ""
+    },
+    {
+      "key": "storeName",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "storeId",
+      "value": ""
+    },
+    {
+      "key": "warehouseId",
+      "value": ""
+    },
+    {
+      "key": "fulfilmentId",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+    "_postman_variable_scope":  "environment",
+    "values":  [
+                   {
+                       "key":  "URL",
+                       "type":  "default",
+                       "value":  "http://localhost:8080",
+                       "enabled":  true
+                   },
+                   {
+                       "key":  "productId",
+                       "type":  "default",
+                       "value":  "1",
+                       "enabled":  true
+                   },
+                   {
+                       "key":  "storeId",
+                       "type":  "default",
+                       "value":  "1",
+                       "enabled":  true
+                   },
+                   {
+                       "key":  "warehouseId",
+                       "type":  "default",
+                       "value":  "1",
+                       "enabled":  true
+                   },
+                   {
+                       "key":  "fulfilmentId",
+                       "type":  "default",
+                       "value":  "1",
+                       "enabled":  true
+                   }
+               ],
+    "name":  "8080",
+    "id":  "env-8080-fulfilment"
+}

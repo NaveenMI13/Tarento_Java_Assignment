@@ -1,0 +1,9 @@
+com\fulfilment\application\monolith\location\LocationGatewayTest.class
+com\fulfilment\application\monolith\warehouses\domain\usecases\InMemoryWarehouseStore.class
+com\fulfilment\application\monolith\warehouses\domain\usecases\CreateWarehouseUseCaseTest.class
+com\fulfilment\application\monolith\products\ProductEndpointTest.class
+com\fulfilment\application\monolith\warehouses\domain\usecases\ArchiveWarehouseUseCaseTest.class
+com\fulfilment\application\monolith\warehouses\adapters\restapi\WarehouseEndpointTest.class
+com\fulfilment\application\monolith\warehouses\adapters\restapi\WarehouseEndpointIT.class
+com\fulfilment\application\monolith\fulfilments\FulfilmentEndpointTest.class
+com\fulfilment\application\monolith\warehouses\domain\usecases\ReplaceWarehouseUseCaseTest.class

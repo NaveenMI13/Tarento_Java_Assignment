@@ -1,0 +1,5 @@
+# Created at 2026-09-06T19:37:02.296
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Code\Tarento\java-assignment\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
